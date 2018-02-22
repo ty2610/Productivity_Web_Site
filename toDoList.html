@@ -3,23 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <title>To Do List</title>
+	<link rel="stylesheet" type="text/css" href="css/toDoList.css">
+	<script type="text/javascript" src="js/toDoList.js"></script>
 </head>
 <body>
 	<div>
-		<div>
-			<table>
+		<div id="tableContainer">
+			<table id="toDoTable" border="1">
+				<tr>
+					<td>
+						<input type="text" name="descriptionInput" id="descriptionInput">
+					</td>
+					<td>
+						<input type="date" name="dateInput" id="dateInput">
+					</td>
+					<td>
+						<select id="categoryInput">
+							<option>Pick a category</option>
+							<option value="Work" id="workSelect">Work</option>
+							<option value="School" id="schoolSelect">School</option>
+							<option value="Chores" id="choresSelect">Chores</option>
+							<option value="Family" id="familySelect">Family</option>
+						</select>
+						OR
+						<input type="text" name="categoryTextInput" id="categoryTextInput">
+						<input type="color" name="colorSelect" id="colorSelect">
+					</td>
+					<td>
+						<input type="checkbox" name="completedInput" id="completedInput">
+					</td>
+					<td>
+						<button type="button" id="doSubmit">Add do</button>
+					</td>
+				</tr>
 				<tr>
 					<th>Description</th>
 					<th>Deadline/Finish Date</th> 
 					<th>Category</th>
 					<th>Complete</th>
+					<th>add/remove</th>
 				</tr>
-				<tr>
-					<td>Jill</td>
-					<td>Smith</td> 
-					<td>50</td>
-					<td>50</td>
-				</tr>
+				<div id="tableInsert"></div>
 			</table>
 		</div>
 	</div>
