@@ -32,6 +32,9 @@
 					<td>
 						<input type="checkbox" name="completedInput" id="completedInput">
 					</td>
+                    <td>
+
+                    </td>
 					<td>
 						<button type="button" id="doSubmit" onclick="doSubmit()">Add do</button>
 					</td>
@@ -39,8 +42,9 @@
 				<tr>
 					<th>Description</th>
 					<th>Deadline/Finish Date</th> 
-					<th>Category</th>
+					<th onclick="sortCategory()" class="pointer">Category</th>
 					<th>Complete</th>
+                    <th>Time Added</th>
 					<th>add/remove</th>
 				</tr>
 				<div id="tableInsert"></div>
