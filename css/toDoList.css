@@ -2,4 +2,10 @@
     width: 80%;
 }
 
-.pointer {cursor: pointer;}
+.pointer {
+    cursor: pointer;
+}
+
+.default {
+    cursor: default;
+}
