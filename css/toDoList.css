@@ -1,5 +1,32 @@
+body {
+    background-image:url('../images/blackboard.jpg');
+    background-attachment:fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 0px;
+    margin: 0px;
+}
+
 #toDoTable {
-    width: 80%;
+    width: 90%;
+    margin: 0px auto;
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+td {
+    border: 1px solid black;
+    height: 49px;
+    padding-left: 5px;
+}
+
+th {
+    border: 1px solid black;
+    color: white;
+}
+
+#tableContainer {
+
 }
 
 .pointer {
@@ -8,4 +35,41 @@
 
 .default {
     cursor: default;
+}
+
+.tableCellCentering {
+    text-align: center;
+}
+
+.topnav {
+    background-color: #333;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 0px;
+    text-decoration: none;
+    font-size: 17px;
+    width: 50%;
+}
+
+.topnav a:hover {
+    background-color: #66cc86;
+    color: black;
+}
+
+.topnav a.active {
+    background-color: #11a03e;
+    color: white;
+}
+
+.page_header {
+    color: white;
+    font-size: 40px;
+    text-align: center;
+    padding-bottom: 10px;
 }

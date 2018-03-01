@@ -1,13 +1,34 @@
-var doRowObject = [];
-var categoryObject = [];
+var doRowObject;
+var categoryObject;
 var rowUniqueCount;
 
 window.onload = function() {
-    rowUniqueCount = 0;
-    categoryObject.push({name:"Work", color:"#f49542"});
-    categoryObject.push({name:"School", color:"#5f147f"});
-    categoryObject.push({name:"Chores", color:"#1dc5d1"});
-    categoryObject.push({name:"Family", color:"#1d993e"});
+    var retrievedRowObject = JSON.parse(localStorage.getItem('rowObject'));
+    var retrievedCategoryObject = JSON.parse(localStorage.getItem('categoryObject'));
+    var retrievedItemCountObject = JSON.parse(localStorage.getItem('itemCount'));
+
+    if(retrievedRowObject !== null){
+        doRowObject = retrievedRowObject;
+    } else {
+        doRowObject = [];
+    }
+    if(retrievedCategoryObject !== null) {
+        categoryObject = retrievedCategoryObject;
+        populateCategorySelect()
+    } else {
+        categoryObject = [];
+
+        categoryObject.push({name:"Work", color:"#f49542"});
+        categoryObject.push({name:"School", color:"#5f147f"});
+        categoryObject.push({name:"Chores", color:"#1dc5d1"});
+        categoryObject.push({name:"Family", color:"#1d993e"});
+    }
+    if(retrievedItemCountObject !== null) {
+        rowUniqueCount = retrievedItemCountObject;
+        toDoReDraw();
+    } else {
+        rowUniqueCount = 0;
+    }
 }
 
 function doSubmit() {
@@ -26,6 +47,7 @@ function addDoRow() {
     var categoryText = document.getElementById("categoryTextInput");
     var categoryColor = document.getElementById("colorSelect");
     var status = document.getElementById("completedInput");
+
     var timeCreated = new Date();
     var dateString = ("0" + timeCreated.getDate()).slice(-2) + "-" + ("0"+(timeCreated.getMonth()+1)).slice(-2) + "-" +
         timeCreated.getFullYear() + " " + ("0" + timeCreated.getHours()).slice(-2) + ":" + ("0" + timeCreated.getMinutes()).slice(-2) +
@@ -34,7 +56,7 @@ function addDoRow() {
     if(description.value === "") {
         return "You must input a description for the do";
     } else if(date.value === ""){
-        return "You must input a date for the do";
+        return "You must input a date and time for the do";
     } else if(categoryDropDown.value === "Pick a category" && categoryText.value === "") {
         return "You must input either an existing category, or your own custom category";
     } else if(categoryDropDown.value !== "Pick a category" && categoryText.value !== "") {
@@ -46,9 +68,10 @@ function addDoRow() {
     } else {
         categoryObject.push({name:categoryText.value, color:categoryColor.value});
         doRowObject.push({id:rowUniqueCount, description:description.value, date: date.value, category:categoryText.value, color:categoryColor.value, status:status.checked, timeCreated:timeCreated, timeCreatedDecorated:dateString});
-        addCategoryToSelect(categoryText.value);
+        populateCategorySelect();
     }
     rowUniqueCount++;
+    localStorage.setItem('itemCount', rowUniqueCount);
     return "success";
 }
 
@@ -87,7 +110,7 @@ function toDoReDraw() {
         newCell5 = row.insertCell(5);
 
         newCell0.innerHTML = "<td>" + doRowObject[i].description + "</td>";
-        newCell1.innerHTML = "<td>" + doRowObject[i].date + "</td>";
+        newCell1.innerHTML = "<td>" + doRowObject[i].date.replace("T"," ") + "</td>";
         newCell2.innerHTML = "<td>" + doRowObject[i].category + "</td>";
         newCell3.innerHTML = "<td>" + "<input id=\"checkBox" + doRowObject[i].id + "\" type=\"checkbox\" onclick=\"checkBoxClick(" + doRowObject[i].id + ")\">" + "</td>";
         newcell4.innerHTML = "<td>" + doRowObject[i].timeCreatedDecorated + "</td>";
@@ -95,6 +118,7 @@ function toDoReDraw() {
     }
     doCheckBoxAction();
     colorRows();
+    localStorage.setItem('rowObject', JSON.stringify(doRowObject));
 }
 
 function doDelete(id) {
@@ -113,6 +137,7 @@ function doCheckBoxAction() {
             document.getElementById("checkBox"+doRowObject[i].id).checked = true;
         }
     }
+    localStorage.setItem('rowObject', JSON.stringify(doRowObject));
 }
 
 function checkBoxClick(id) {
@@ -130,11 +155,20 @@ function colorRows() {
     }
 }
 
-function addCategoryToSelect(name) {
+function populateCategorySelect() {
     var multiSelect = document.getElementById("categoryInput");
-    var option = document.createElement("option");
-    option.text = name;
-    multiSelect.add(option);
+    // noinspection JSAnnotator
+    multiSelect.options.length = 0;
+
+    var firstOption = document.createElement("option");
+    firstOption.text = "Pick a category";
+    multiSelect.add(firstOption);
+    for(var i=0; i<categoryObject.length; i++) {
+        var option = document.createElement("option");
+        option.text = categoryObject[i].name;
+        multiSelect.add(option);
+    }
+    localStorage.setItem('categoryObject', JSON.stringify(categoryObject));
 }
 
 function sortCategory() {
