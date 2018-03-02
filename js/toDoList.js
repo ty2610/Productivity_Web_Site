@@ -126,6 +126,7 @@ function toDoReDraw() {
     doCheckBoxAction();
     colorRows();
     localStorage.setItem('rowObject', JSON.stringify(doRowObject));
+    drawChart()
 }
 
 function doDelete(id) {
