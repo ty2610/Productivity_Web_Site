@@ -53,7 +53,7 @@ function changePicture(pictureID, isSlide) {
     var container = document.getElementById("modal_body");
 
     img.src=picturePaths[pictureID];
-    img.style.width = "800px";
+    img.style.width = "60%";
     img.classList.add("picture");
     img.classList.add("pictureFadeIn");
     img.id = "bigImage";

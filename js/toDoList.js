@@ -29,6 +29,8 @@ window.onload = function() {
     } else {
         rowUniqueCount = 0;
     }
+
+    drawChart();
 }
 
 function doSubmit() {
@@ -72,6 +74,11 @@ function addDoRow() {
     }
     rowUniqueCount++;
     localStorage.setItem('itemCount', rowUniqueCount);
+    description.value = "";
+    date.value = "";
+    categoryDropDown.selectedIndex = 0;
+    categoryText.value = "";
+    categoryColor.value = "#000000";
     return "success";
 }
 
@@ -203,4 +210,35 @@ function sortFinishDate() {
         return new Date(a.date) - new Date(b.date);
     });
     toDoReDraw();
+}
+
+function drawChart() {
+    var canvas = document.getElementById("pieChart");
+    var ctx = canvas.getContext("2d");
+    var lastend = 0;
+    var data = [];
+    var myColor = [];
+    var  count = {};
+    doRowObject.forEach(function(i) { count[i.category] = (count[i.category]||0) + 1;});
+    for (var property in count) {
+        if (count.hasOwnProperty(property)) {
+            data.push(count[property]);
+            myColor.push(getColorForName(property));
+        }
+    }
+    var myTotal = 0;
+
+    for (var e = 0; e < data.length; e++) {
+        myTotal += data[e];
+    }
+
+    for (var i = 0; i < data.length; i++) {
+        ctx.fillStyle = myColor[i];
+        ctx.beginPath();
+        ctx.moveTo(canvas.width / 2, canvas.height / 2);
+        ctx.arc(canvas.width / 2, canvas.height / 2, canvas.height / 2, lastend, lastend + (Math.PI * 2 * (data[i] / myTotal)), false);
+        ctx.lineTo(canvas.width / 2, canvas.height / 2);
+        ctx.fill();
+        lastend += Math.PI * 2 * (data[i] / myTotal);
+    }
 }

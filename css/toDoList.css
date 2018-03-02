@@ -5,6 +5,7 @@ body {
     background-size: cover;
     padding: 0px;
     margin: 0px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #toDoTable {
@@ -16,7 +17,7 @@ body {
 
 td {
     border: 1px solid black;
-    height: 49px;
+    height: 5rem;
     padding-left: 5px;
 }
 
@@ -53,7 +54,7 @@ th {
     text-align: center;
     padding: 14px 0px;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 2rem;
     width: 50%;
 }
 
@@ -69,9 +70,10 @@ th {
 
 .page_header {
     color: white;
-    font-size: 40px;
+    font-size: 8rem;
     text-align: center;
     padding-bottom: 10px;
+    padding-top: 4rem;
 }
 
 #imageTable tr td {
@@ -88,6 +90,7 @@ th {
 }
 
 #imageTable {
+    text-align: center;
     border-spacing:5em;
     width:90%;
     margin: 0px auto;
@@ -148,7 +151,7 @@ img:focus {
     background-color: black;
     margin: auto;
     padding: 0;
-    top: 15%;
+    top: 5%;
     width: 80%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     animation-name: animatetop;
@@ -176,7 +179,7 @@ img:hover {
 /* Add Animation */
 @keyframes animatetop {
     from {top: -100%; opacity: 0}
-    to {top: 15%; opacity: 1}
+    to {top: 5%; opacity: 1}
 }
 
 /* Add Animation */
@@ -186,11 +189,21 @@ img:hover {
 }
 
 @keyframes animateLeave {
-    from {top: 15%; opacity: 1}
+    from {top: 5%; opacity: 1}
     to {top: -100%; opacity: 0}
 }
 
 @keyframes animateFadeIn {
     from {opacity: 0}
     to {opacity: 1}
+}
+
+.image_container {
+    width: 90%;
+}
+
+.pieContainer {
+    padding-top: 5rem;
+    padding-bottom: 2rem;
+    text-align: center;
 }
