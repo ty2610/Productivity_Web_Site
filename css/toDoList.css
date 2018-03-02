@@ -73,3 +73,124 @@ th {
     text-align: center;
     padding-bottom: 10px;
 }
+
+#imageTable tr td {
+    border: none;
+    /*padding: 0px 15px;*/
+    padding: 0px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#imageTable tr {
+    padding: 0px;
+    border: none;
+}
+
+#imageTable {
+    border-spacing:5em;
+    width:90%;
+    margin: 0px auto;
+}
+
+#imageTable img{
+    display:block
+}
+
+.mini_picture_container {
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.picture {
+    border-radius: 10px;
+}
+
+img:focus {
+    outline: 5px solid blue;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    color: white;
+    font-size: 3em;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow-y: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+}
+
+/* Modal Body */
+.modal-body {
+    padding: 40px 16px;
+    text-align: center;
+}
+
+/* Modal Footer */
+.modal-footer {
+    padding: 10px 16px;
+    background-color: #43464c;
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: black;
+    margin: auto;
+    padding: 0;
+    top: 15%;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+}
+
+.addedToRemove {
+    animation-name: animateLeave;
+    animation-duration: 0.4s;
+    top: -100%
+}
+
+img:hover {
+    outline: 5px dotted blue;
+    animation-name: hoverHighlight;
+    animation-duration: 0.4s;
+}
+
+.pictureFadeIn {
+    animation-name: animateFadeIn;
+    animation-duration: 0.4s;
+    animation-iteration-count: 1;
+}
+
+/* Add Animation */
+@keyframes animatetop {
+    from {top: -100%; opacity: 0}
+    to {top: 15%; opacity: 1}
+}
+
+/* Add Animation */
+@keyframes hoverHighlight {
+    from {outline: 0px dotted blue}
+    to {outline: 5px dotted blue}
+}
+
+@keyframes animateLeave {
+    from {top: 15%; opacity: 1}
+    to {top: -100%; opacity: 0}
+}
+
+@keyframes animateFadeIn {
+    from {opacity: 0}
+    to {opacity: 1}
+}
